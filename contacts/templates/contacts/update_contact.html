@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Contact</title>
+</head>
+<body>
+    <h1>{{ title }}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+            <!-- Display name field error -->
+            {% if form.name.errors %}
+                <div style="color:red;">
+                    {{ form.name.errors|striptags }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+        </div>
+
+        <div>
+            <label for="id_profession">Profession:</label>
+            {{ form.profession }}
+        </div>
+
+        <div>
+            <label for="id_tel_number">Tel number:</label>
+            {{ form.tel_number }}
+            <!-- Display tel_number field error -->
+            {% if form.tel_number.errors %}
+                <div style="color:red;">
+                    {{ form.tel_number.errors|striptags }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_email">Email:</label>
+            {{ form.email }}
+        </div>
+
+        <button type="submit">Save Contact</button>
+    </form>
+
+    <a href="{% url 'contact_list' %}">Back to Contact List</a>
+</body>
+</html>

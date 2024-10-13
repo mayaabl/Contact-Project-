@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+</head>
+<body>
+    <h1>Contact List</h1>
+
+    {% if contacts %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Profession</th>
+                    <th>Tel Number</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.address }}</td>
+                        <td>{{ contact.profession }}</td>
+                        <td>{{ contact.tel_number }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>
+                            <a href="{% url 'update_contact' contact.pk %}">Update</a> |
+                            <a href="{% url 'delete_contact' contact.pk %}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No contacts available.</p>
+    {% endif %}
+
+    <a href="{% url 'create_contact' %}">Create a new contact</a>
+</body>
+</html>
